@@ -1,28 +1,22 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+const appendTextNode = () => {
+  const root = document.getElementById('count')
+  const newContent = document.createTextNode("I'm appended to the dom. I'll be here forever!!!!")
+  root.appendChild(newContent)
 }
 
-export default App;
+const App = () => {
+  const [count, changeCount] = useState(0)
+  return (
+    <div>
+      <div>Counter:</div>
+      <h1 id="count">{count}</h1>
+      <button onClick={() => changeCount(count + 1)}>+</button>
+      <button onClick={() => changeCount(count - 1)}>-</button>
+      <button onClick={appendTextNode}>add something to the dom</button>
+    </div>
+  )
+}
+
+export default App
